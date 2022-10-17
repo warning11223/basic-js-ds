@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Given a singly linked list of integers l and an integer k,
@@ -22,10 +22,108 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+class Queue {
+  constructor() {
+    this.head = null;
+    this.length = 0;
+  }
+
+  getUnderlyingList() {
+    //throw new NotImplementedError('Not implemented');
+    return this.head
+  }
+
+  enqueue(value) {
+    //throw new NotImplementedError('Not implemented');
+    if (this.head === null) {
+      this.head = new ListNode(value);
+    } else {
+      let current = this.head;
+
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = new ListNode(value);
+
+    }
+    this.length++;
+
+  }
+
+  dequeue() {
+    //throw new NotImplementedError('Not implemented');
+    if (this.length < 0) {
+      return;
+    }
+
+    let current = this.head;
+    this.head = current.next;
+
+    return current.value;
+
+  }
+
 }
+
+const test = new Queue();
+test.enqueue(3);
+test.enqueue(1);
+test.enqueue(2);
+test.enqueue(3);
+test.enqueue(4);
+test.enqueue(5);
+
+
+function removeKFromList(l, k) {
+  //throw new NotImplementedError('Not implemented');
+
+  class Queue {
+    constructor() {
+      this.head = null;
+      this.length = 0;
+    }
+
+    getUnderlyingList() {
+      //throw new NotImplementedError('Not implemented');
+      return this.head
+    }
+
+    enqueue(value) {
+      //throw new NotImplementedError('Not implemented');
+      if (this.head === null) {
+        this.head = new ListNode(value);
+      } else {
+        let current = this.head;
+
+        while (current.next) {
+          current = current.next;
+        }
+        current.next = new ListNode(value);
+
+      }
+      this.length++;
+
+    }
+
+
+  }
+
+  const test = new Queue();
+
+  let current = l;
+
+  while(current) {
+    if (current.value !== k) {
+      test.enqueue(current.value);
+    }
+    current = current.next;
+  }
+
+  return test.getUnderlyingList()
+
+}
+
+console.log(removeKFromList(test.getUnderlyingList(), 3))
 
 module.exports = {
   removeKFromList
